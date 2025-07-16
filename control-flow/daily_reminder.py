@@ -6,13 +6,20 @@ while True:
         print("Goodbye!")
         break
 
-    priority = input("Priority (high/medium/low): ")
-    time_bound = input("Is it time-bound? (yes/no): ")
+    priority = input("Priority (high/medium/low): ").lower()
+    time_bound = input("Is it time-bound? (yes/no): ").lower()
 
-    reminder = f"Reminder: '{task}' is a {priority} priority task"
-    if time_bound.lower() == "yes":
+    match priority:
+        case "high":
+            reminder = f"Reminder: '{task}' is a high priority task"
+        case "medium":
+            reminder = f"Reminder: '{task}' is a medium priority task"
+        case "low":
+            reminder = f"Reminder: '{task}' is a low priority task"
+        case _:
+            reminder = f"Reminder: '{task}' has an unknown priority"
+
+    if time_bound == "yes":
         reminder += " that requires immediate attention today!"
-    else:
-        reminder += "."
 
     print("\n" + reminder + "\n")
